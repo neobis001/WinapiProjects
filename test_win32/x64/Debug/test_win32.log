@@ -1,0 +1,5 @@
+﻿  sandbox_CLEAN5.c
+c:\users\nicolas\desktop\scripts\winapiprojects\test_win32\sandbox_clean5.c(38): warning C4013: 'sin' undefined; assuming extern returning int
+c:\users\nicolas\desktop\scripts\winapiprojects\test_win32\sandbox_clean5.c(58): warning C4244: '=': conversion from 'UINT_PTR' to 'UINT', possible loss of data
+c:\users\nicolas\desktop\scripts\winapiprojects\test_win32\sandbox_clean5.c(198): warning C4244: 'return': conversion from 'WPARAM' to 'int', possible loss of data
+  test_win32.vcxproj -> C:\Users\Nicolas\Desktop\Scripts\WinapiProjects\x64\Debug\test_win32.exe

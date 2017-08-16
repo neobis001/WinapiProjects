@@ -1,0 +1,9 @@
+﻿  sandbox_CLEAN5.c
+sandbox_CLEAN5.c(53): warning C4244: '=': conversion from 'UINT_PTR' to 'UINT', possible loss of data
+sandbox_CLEAN5.c(193): warning C4244: 'return': conversion from 'WPARAM' to 'int', possible loss of data
+  Generating code
+  1 of 6 functions (16.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  test_win32.vcxproj -> C:\Users\Nicolas\Desktop\Scripts\WinapiProjects\x64\Release\test_win32.exe

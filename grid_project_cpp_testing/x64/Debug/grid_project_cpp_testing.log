@@ -1,0 +1,3 @@
+﻿  main4.cpp
+c:\users\nicolas\desktop\scripts\winapiprojects\grid_project_cpp_testing\main4.cpp(122): warning C4244: 'return': conversion from 'WPARAM' to 'int', possible loss of data
+  grid_project_cpp_testing.vcxproj -> C:\Users\Nicolas\Desktop\Scripts\WinapiProjects\x64\Debug\grid_project_cpp_testing.exe
