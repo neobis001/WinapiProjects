@@ -4,13 +4,18 @@
 
 #include <stdio.h>  
 #include <stdlib.h>  
+#include <iostream>
 
 FILE *stream;
 
+using namespace std;
+
 int main(void)
 {
+	
 	errno_t err;
-	// Reassign "stderr" to "freopen.out":   
+	// Reassign "stderr" to "freopen.out":  
+	
 	err = freopen_s(&stream, "freopen.out", "w", stderr);
 
 	if (err != 0)
@@ -18,8 +23,12 @@ int main(void)
 	else
 	{
 		fprintf(stdout, "successfully reassigned\n"); fflush(stdout);
-		fprintf(stream, "This will go to the file 'freopen.out'\n");
+		//fprintf(stderr, "This will go to the file 'freopen.out'\n");
+		cerr << "Testing";
 		fclose(stream);
 	}
 	system("type freopen.out");
+
+	int a = (int)'1';
+	cout << a << endl;
 }

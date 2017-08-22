@@ -7,9 +7,9 @@ typedef ColorRMR* PColorRMR;
 
 class ColorRMR : public CSButton {
 private:
-	PColorSB red_sb;
-	PColorSB green_sb;
-	PColorSB blue_sb;
+	PColorSB red_sb = nullptr;
+	PColorSB green_sb = nullptr;
+	PColorSB blue_sb = nullptr;
 
 public:
 	ColorRMR();

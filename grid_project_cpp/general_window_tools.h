@@ -24,7 +24,7 @@ void msg_here(DYNCSTR extra_info = TEXT("None"));
 //display a message box showing the last error that occurred
 //if there's none, the message box will be blank
 //note though that error model is vague (some errors showing aren't actually errors)
-void msg_error();
+void msg_last_error();
 
 void msg_int(int integer, DYNCSTR extra_info = TEXT("None"));
 

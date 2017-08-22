@@ -15,9 +15,14 @@ void ColorRMR::connect_sbs(PColorSB red_sb, PColorSB green_sb, PColorSB blue_sb)
 }
 
 void ColorRMR::randomize_sbs() {
-	this->red_sb->randomize_component();
-	this->green_sb->randomize_component();
-	this->blue_sb->randomize_component();
+	if (red_sb == nullptr || green_sb == nullptr || blue_sb == nullptr) {
+		msg_force_quit("Error (in ColorRMR::randomize_sbs): one of the sb variables is nullptr");
+	}
+	else {
+		red_sb->randomize_component();
+		green_sb->randomize_component();
+		blue_sb->randomize_component();
+	}
 }
 
 RETURNMSG ColorRMR::ON_BN_CLICKED(UINT ctl_id, UINT note_code, HWND h_button) {

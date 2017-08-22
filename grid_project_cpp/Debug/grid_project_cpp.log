@@ -1,4 +1,7 @@
-﻿  general_window_tools.cpp
+﻿  core_packer_algorithm.cpp
+  Generating Code...
+  Compiling...
+  general_window_tools.cpp
   custom_window_packer.cpp
   custom_window.cpp
   custom_updown.cpp
@@ -7,6 +10,5 @@
   custom_edit.cpp
   custom_control.cpp
   custom_button.cpp
-  core_packer_algorithm.cpp
   Generating Code...
   grid_project_cpp.vcxproj -> C:\Users\Nicolas\Desktop\Scripts\WinapiProjects\Debug\grid_project_cpp.lib
