@@ -8,6 +8,8 @@
                                               processorArchitecture = '*' \
                                               publicKeyToken        = '6595b64144ccf1df' \
                                               language              = '*'\"")
+#pragma comment(lib, "comctl32.lib") //this command allows c plus plus to look for a comctl32.lib on compilation
+  //Useful with library dependencies not available when building a static library
 
 void initialize_common_controls(INT class_ids);
 

@@ -97,72 +97,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	brmr->connect_sbs(red_sb, green_sb, blue_sb);
 	cdc->connect_bk_sbs(red_sb, green_sb, blue_sb);
 
-
 	PColorDraw cdw = new ColorDraw(hInstance, main_window, "Update Drawing");
 	cdw->pack(TOP, false, 20, 20);
 	cdw->connect_cdc(cdc);
 
-	/*
-	wops.lpClassName = "EDIT";
-	wops.dwStyle = WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL;
-	wops.x = 80;
-	wops.y = 100;
-	wops.nWidth = 500;
-	wops.nHeight = 400;
-	CSWindow* window = new CSWindow(wops, main_window);
-	window->pack(TOP, false, 0, 0);
-	
-	wops.nWidth = 100;
-	wops.nHeight = 100;
-
-	CSWindow* w3 = new CSWindow(wops, main_window);
-	w3->pack(LEFT, false, 0, 0);
-
-	CSWindow* w4 = new CSWindow(wops, main_window);
-	w4->pack(BOTTOM, false, 0, 0);
-
-	CSWindow* w5 = new CSWindow(wops, main_window);
-	w5->pack(LEFT, false, 0, 0);
-
-	CSWindow* w6 = new CSWindow(wops, main_window);
-	w6->pack(TOP, false, 0, 0);
-
-	CSWindow* w7 = new CSWindow(wops, main_window);
-	w7->pack(LEFT, false, 0, 0);
-	*/
-	
-	
-	/*
-	wops.lpClassName = "EDIT";
-	wops.dwStyle = WS_VISIBLE | ES_MULTILINE | ES_AUTOVSCROLL;
-	wops.x = 80;
-	wops.y = 100;
-	wops.nWidth = 500;
-	wops.nHeight = 400;
-	CSWindow* window = new CSWindow(wops, main_window);
-	window->pack(TOP, false, 0, 0);
-
-	wops.nWidth = 100;
-	wops.nHeight = 200;
-	CSFrame* f = new CSFrame(hInstance, main_window);
-	f->set_gridding_space(2, 3);
-	for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 3; j++) {
-		//CSWindow* w = new CSWindow(wops, f);
-		CSSpinbox* w = new CSSpinbox(hInstance, f, 0, 10);
-		w->grid(i, j, 20, 20, 1, 1);
-		}
-	}
-	f->pack(TOP, true, 0, 0);
-	*/
-
-
-
 
 	main_window->show(nCmdShow);
 	main_window->update();
-
-	//s->set_window_pos(NULL, 0, 0, 100, 200, 0);
 
 	// Step 3: The Message Loop
 	while(GetMessage(&Msg, NULL, 0, 0) > 0)

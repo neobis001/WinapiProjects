@@ -878,7 +878,7 @@ void CSWindow::request_custom_placing() {
 	connect_placing_modes(CUSTOM_PLACING_OPTION);
 }
 
-RETURNMSG CSWindow::ON_WM_CREATE(LPCREATESTRUCT lp_cs) {
+RETURNMSG CSWindow::ON_WM_CREATE(LPCREATESTRUCT lp_cs, HWND hwnd_in_creation) {
 	return create_defproc_option();
 }
 
@@ -998,6 +998,10 @@ RETURNMSG CSWindow::ON_UDN_DELTAPOS(LPNMUPDOWN lp_nmupdown) {
 	return create_default_option(0); //return 0 to allow any changes
 }
 
+RETURNMSG CSWindow::ON_WM_TIMER(UINT_PTR nIDEvent) {
+	return create_default_option(0);
+}
+
 
 LRESULT CALLBACK defaultWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	switch (uMsg) {
@@ -1007,7 +1011,8 @@ LRESULT CALLBACK defaultWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		PCSWindow connected_wnd = (PCSWindow)GetProp(hwnd, CONNECTED_SUBCLASS_WND);
 		if (connected_wnd != NULL) {
 			LPCREATESTRUCT lp_cs = (LPCREATESTRUCT)lParam;
-			RETURNMSG return_msg = connected_wnd->ON_WM_CREATE(lp_cs);
+			HWND hwnd_in_creation = hwnd; //see note in custom_window.h about why this is needed
+			RETURNMSG return_msg = connected_wnd->ON_WM_CREATE(lp_cs, hwnd_in_creation);
 			return proc_return(hwnd, uMsg, wParam, lParam, return_msg);
 		}
 		break;
@@ -1020,7 +1025,6 @@ LRESULT CALLBACK defaultWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 LRESULT CALLBACK defaultSubclassWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
 	UINT_PTR uIdSubclass, DWORD_PTR dwRefData) {
-	
 	switch (uMsg) {	
 	case CUSTOM_SUBCLASS_SETUP: { //with custom messages, no big reason to worry about what to return
 		  //just do it for consistency
@@ -1029,7 +1033,7 @@ LRESULT CALLBACK defaultSubclassWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 		}
 		RETURNMSG return_msg = create_default_option(0); //always returning 0 by choice
 		return subproc_return(hwnd, uMsg, wParam, lParam, return_msg);
-	}			
+	}		
 	case WM_SIZE: {
 		PCSWindow connected_wnd = (PCSWindow)GetProp(hwnd, CONNECTED_SUBCLASS_WND);
 		if (connected_wnd != NULL) {
@@ -1124,6 +1128,14 @@ LRESULT CALLBACK defaultSubclassWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
 		PCSWindow connected_wnd = (PCSWindow)GetProp(hwnd, CONNECTED_SUBCLASS_WND);
 		if (connected_wnd != NULL) {
 			RETURNMSG return_msg = connected_wnd->ON_WM_NOTIFY(wParam, lParam);
+			return subproc_return(hwnd, uMsg, wParam, lParam, return_msg);
+		}
+	}
+	case WM_TIMER: {
+		PCSWindow connected_wnd = (PCSWindow)GetProp(hwnd, CONNECTED_SUBCLASS_WND);
+		UINT_PTR nIDEvent = (UINT_PTR)wParam;
+		if (connected_wnd != NULL) {
+			RETURNMSG return_msg = connected_wnd->ON_WM_TIMER(nIDEvent);
 			return subproc_return(hwnd, uMsg, wParam, lParam, return_msg);
 		}
 	}

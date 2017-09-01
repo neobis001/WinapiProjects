@@ -1,90 +1,91 @@
-#include <windows.h>
-#include <CommCtrl.h>
+#include "line_bouncing_logic.h"
+#include "point_tools.h"
 
-//#include "custom_spinbox_tools.h"		
-#include "custom_window.h"
-#include "custom_spinbox.h"
-#include "custom_frame.h"
+#include <vector>
 
-DYNCSTR g_szClassName = TEXT("myWindowClass");
-
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-	LPSTR lpCmdLine, int nCmdShow)
+int main()
 {
-	MSG Msg;
+	/*
+	std::vector<POINT> v;
+	v.push_back({ -1.0f, -1.0f });
+	v.push_back({ -1.0f, -.5f });
+	v.push_back({ -1.0f, 0.0f });
+	v.push_back({ -1.0f, 0.5f });
+	v.push_back({ -1.0f, 1.0f });
 
-	CSWNDCLASSEX cswc;
-	cswc.style = 0;
-	cswc.cbClsExtra = 0;
-	cswc.cbWndExtra = 0;
-	cswc.hInstance = hInstance;
-	cswc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	cswc.hCursor = LoadCursor(NULL, IDC_ARROW);
-	cswc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 2);
-	cswc.lpszMenuName = NULL;
-	cswc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	v.push_back({ -.5f, 1.0f });
+	v.push_back({ 0.0f, 1.0f });
+	v.push_back({ 0.5f, 1.0f });
+	v.push_back({ 1.0f, 1.0f });
 
+	v.push_back({ 1.0f, 0.5f });
+	v.push_back({ 1.0f, 0.0f });
+	v.push_back({ 1.0f, -0.5f });
+	v.push_back({ 1.0f, -1.0f });
 
-	CSWNDEXOPS wops;
-	wops.dwExStyle = WS_EX_CLIENTEDGE;
-	wops.lpClassName = g_szClassName;
-	wops.lpWindowName = TEXT("The title of my window");
-	wops.dwStyle = WS_OVERLAPPEDWINDOW;
-	wops.x = 10;
-	wops.y = 2;
-	wops.nWidth = 390;
-	wops.nHeight = 400;
-	wops.hMenu = NULL;
-	wops.hInstance = hInstance;
-	wops.lpParam = NULL;
+	v.push_back({ 0.5f, -1.0f });
+	v.push_back({ 0.0f, -1.0f });
+	v.push_back({ -0.5f, -1.0f });
 
-	PCSWindow main_window = new CSWindow(cswc, wops, nullptr);
-	main_window->set_gridding_space(2, 2);
-	main_window->weight_grid_row(0, 4);
-	main_window->weight_grid_col(0, 1);
+	std::vector<POINT>::const_iterator iterator;
 
-	CSFrame* frame;
-	frame = new CSFrame(hInstance, main_window);
-	frame->grid(0, 1, 10, 10, 1, 1);
-	frame->set_gridding_space(2, 1);
-
-	CSSpinbox* spinbox;
-	spinbox = new CSSpinbox(hInstance, frame, 0, 10);
-	spinbox->grid(0, 0, 10, 10, 1, 1);
-
-	CSSpinbox* spinbox2;
-	//spinbox2 = new CSSpinbox(hInstance, frame, 0, 20);
-	//spinbox2->grid(1, 0, 20, 30, 1, 1);
-
-	CSWindow* window;
-	wops.lpClassName = "EDIT";
-	wops.dwStyle = WS_VISIBLE;
-	wops.x = 80;
-	wops.y = 100;
-	wops.nWidth = 100;
-	wops.nHeight = 100;
-	window = new CSWindow(wops, main_window);
-	window->grid(1, 0, 20, 0, 1, 2);
-
-	main_window->show(nCmdShow);
-	main_window->update();
-
-
-	// Step 3: The Message Loop
-	while(GetMessage(&Msg, NULL, 0, 0) > 0)
-	{
-		TranslateMessage(&Msg);
-		DispatchMessage(&Msg);
+	for (iterator = v.begin(); iterator != v.end(); iterator++) {
+		POINT poi = *iterator;
+		cout << "\n\nPoint to use " << poi.x << " " << poi.y << endl;
+		LocVector a(0.5f, 0.5f, poi.x, poi.y);
+		BOUNCEPOINT p = find_target_bpoint(a);
+		cout << "result target point: " << p.p.x << " " << p.p.y << endl;
+		cout << "result bounce vector: " << p.bounce_vec.x << " " << p.bounce_vec.y << endl;
 	}
 
-	delete main_window;
-	main_window = nullptr;
-	frame = nullptr;
-	spinbox = nullptr;
-	spinbox2 = nullptr;
-	window = nullptr;
+	LocVector a(0.5f, 0.5f, 1.0f, 0.0f);
+	BOUNCEPOINT p = find_target_bpoint(a);
+	
+	cout << "\n\nend result of processing" << endl;
+	*/
 
-	//return 0;
-	return Msg.wParam;
+	//LocVector start = select_contained_locvector();
+	//start.report_values();
+
+	
+	InterpolatedLV a(0.4f, 0.4f, 0.3f, -0.1f);
+	a.set_interpolate_target({ 0.9f, 0.1f });
+
+	std::vector<float> v;
+	v.push_back(0.0f);
+	v.push_back(1.0f);
+	v.push_back(2.5f);
+	v.push_back(4.9f);
+	v.push_back(5.0f);
+
+	std::vector<float>::const_iterator iter;
+
+	for (int i = 0; i < 4; i++) {
+		cout << "\n\n Round " << i << endl;
+		BOUNCEPOINT bp = find_target_bpoint(a);
+		a.set_interpolate_target(bp.p);
+
+		cout << "CURRENT_TAIL" << point_tools::get_point_str(a.get_inter_tail_point()) << endl;
+		for (iter = v.begin(); iter != v.end(); iter++) {
+			float current_iter = *iter;
+			a.interpolate_tail(0.0f, 5.0f, current_iter);
+
+			cout << "CURRENT_INTER" <<  point_tools::get_point_str(a.get_current_inter_point()) << endl;
+		}
+		cout << "CURRENT_TIP" << point_tools::get_point_str(a.get_inter_tip_point()) << endl;
+
+		a.reflect_locvector(bp);
+		a.report_values();
+	}
+
+
+	/*
+	for (int i = 0; i < 4; i++) {
+		cout << "\n\nRound " << i << endl;
+		BOUNCEPOINT bp = find_target_bpoint(a);
+		a.reflect_locvector(bp);
+		a.report_values();
+	}*/
+
+	return 0;
 }
-

@@ -27,7 +27,6 @@ int holder = 0;
 void display() {
 	/* rotate a triangle around */
 	glClear(GL_COLOR_BUFFER_BIT);
-	glEnable(GL_STENCIL_TEST);
 
 	glBegin(GL_TRIANGLES);
 	glColor3f(1.0f, 0.0f, 0.0f);

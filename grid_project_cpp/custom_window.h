@@ -396,7 +396,13 @@ public:
 
 	void request_custom_placing();
 
-	virtual RETURNMSG ON_WM_CREATE(LPCREATESTRUCT lp_cs);
+	//big note: hwnd_in_creation provides access to the hwnd passed in to the message loop
+	//on creation
+	//At this time, in the WM_CREATE message, the instance member hwnd variable is still 0
+	//It will become the hwnd_in_creation after the CreateWindowEx function in
+	//CSWindow::attempt_hwnd_creation finishes
+	//So if want to access hwnd now (note a handle is just like a pointer), need hwnd_in_creation
+	virtual RETURNMSG ON_WM_CREATE(LPCREATESTRUCT lp_cs, HWND hwnd_in_creation);
 
 	virtual RETURNMSG ON_WM_WINDOWPOSCHANGING(LPWINDOWPOS lp_wndps);
 
@@ -427,6 +433,10 @@ public:
 	virtual RETURNMSG ON_PUDN_DELTAPOS(PCSWindow child, LPNMUPDOWN lp_nmupdown);
 
 	virtual RETURNMSG ON_UDN_DELTAPOS(LPNMUPDOWN lp_nmupdown);
+
+	//NOTE: WM_TIMER also has an lParam that is a pointer to a special function
+	//could consider adding that in later, but for now, just focus on ID
+	virtual RETURNMSG ON_WM_TIMER(UINT_PTR nIDEvent);
 
 };
 

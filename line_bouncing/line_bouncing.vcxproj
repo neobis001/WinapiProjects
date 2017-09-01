@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)grid_project_cpp;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)grid_project_cpp;$(SolutionDir)Include;$(SolutionDir)line_bouncing_logic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,7 +119,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)grid_project_cpp;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)grid_project_cpp;$(SolutionDir)Include;$(SolutionDir)line_bouncing_logic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,9 +152,16 @@
     <ProjectReference Include="..\grid_project_cpp\grid_project_cpp.vcxproj">
       <Project>{03ffd7b0-c4f4-48c9-9a19-edbbfa5f2248}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\line_bouncing_logic\line_bouncing_logic.vcxproj">
+      <Project>{8549b7d3-e7cc-4c4c-a604-2dbb1d36cd1f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sandbox_CLEAN5.cpp" />
+    <ClCompile Include="LineBouncer.cpp" />
+    <ClCompile Include="main2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LineBouncer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

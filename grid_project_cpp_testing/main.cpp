@@ -55,6 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	//PCSEdit window = new CSEdit(hInstance, main_window);
 	//window->pack(TOP, false, 0, 0);
 	
+	/*
 	wops.nWidth = 100;
 	wops.nHeight = 200;
 	CSFrame* f = new CSFrame(hInstance, main_window);
@@ -70,12 +71,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		}
 	}
 	f->pack(TOP, true, 0, 0);
+	*/
 
-
-	/*
+	
 	wops.nWidth = 100;
 	wops.nHeight = 100;
 
+	/*
 	CSWindow* w3 = new CSWindow(wops, main_window);
 	w3->pack(LEFT, false, 0, 0);
 
@@ -91,6 +93,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	CSWindow* w7 = new CSWindow(wops, main_window);
 	w7->pack(LEFT, false, 0, 0);
 	*/
+
+	CSWindow* a = new CSWindow(wops, main_window);
+	a->pack(TOP, false, 0, 0);
+
+	CSWindow* b = new CSWindow(wops, main_window);
+	b->pack(TOP, true, 0, 0);
+
+	CSWindow* c = new CSWindow(wops, main_window);
+	c->pack(TOP, false, 0, 0);
 
 	main_window->show(nCmdShow);
 	main_window->update();
