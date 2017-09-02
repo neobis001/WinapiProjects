@@ -1,7 +1,0 @@
-﻿  sandbox_CLEAN5.c
-  Generating code
-  5 of 6 functions (83.3%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  test_win32.vcxproj -> C:\Users\Nicolas\Desktop\Scripts\WinapiProjects\Release\test_win32.exe

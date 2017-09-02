@@ -1,5 +1,0 @@
-﻿  ClipRgn.cpp
-c:\users\nicolas\desktop\scripts\winapiprojects\test_clipping\cliprgn.cpp(341): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion
-c:\users\nicolas\desktop\scripts\winapiprojects\test_clipping\cliprgn.cpp(379): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion
-c:\users\nicolas\desktop\scripts\winapiprojects\test_clipping\cliprgn.cpp(420): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion
-  test_clipping.vcxproj -> C:\Users\Nicolas\Desktop\Scripts\WinapiProjects\Debug\test_clipping.exe
